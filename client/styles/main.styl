@@ -45,7 +45,7 @@ header
                     width 6px
                     border-radius 3px
                     opacity 0
-                    transition opacity 0.4s
+                    transition opacity 0.6s
                 &.active:after 
                     opacity 1
     .logo
@@ -57,3 +57,16 @@ header
 /*** Main part ***/
 main 
     margin-top headerHeight 
+
+// State change animation
+[ui-view]
+    transition opacity .5s
+    &.ng-enter,
+    &.ng-leave 
+        position absolute
+        left 0
+        right 0
+    &.ng-enter
+        opacity 0
+    &.ng-leave
+        opacity 1

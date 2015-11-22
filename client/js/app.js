@@ -1,7 +1,10 @@
 'use strict';
 
 (function () {
-    var app = angular.module('cherryApp', [ 'ui.router']);
+    var app = angular.module('cherryApp', [
+        'ui.router',
+        'ngAnimate'
+    ]);
 
     app.constant('ROUTES', {
         //MAIN: '/',
