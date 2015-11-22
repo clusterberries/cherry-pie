@@ -1,0 +1,56 @@
+<nav class="side-panel">
+	<div 
+		class="categories" 
+		ng-class="!categories.open && 'minimized'"
+		ng-click="triggerPanel(categories)">
+
+		<div class="arrow" ></div>
+		<ul>
+			<li ng-repeat="category in categories">
+			<a ui-sref=".category({ category: category.name })" ui-sref-active="active">{{category.viewName}}</a>
+			</li>
+		</ul>
+	</div> 
+	
+	<div 
+		class="subcategories" 
+		ng-class="!subcategories.open && 'minimized'"
+		ng-click="triggerPanel(subcategories)">
+
+		<div ng-if="subcategories.length" class="arrow"></div>
+		<div ng-if="subcategories.length" class="title">
+			<a ui-sref=".category({ category: currCategory.name })">{{currCategory.titleName}}</a>
+		</div>
+		<ul>
+			<li ng-repeat="subcategory in subcategories">
+			<a ui-sref=".subcategory({ 
+				category: currCategory.name, 
+				subcategory: subcategory.name 
+			})" ui-sref-active="active">{{subcategory.viewName}}</a>
+			</li>
+		</ul>
+	</div>
+		
+	<div 
+		class="recipes" 
+		ng-class="!recipes.open && 'minimized'"
+		ng-click="triggerPanel(recipes)">
+
+		<div ng-if="recipes.length" class="arrow"></div>
+		<div ng-if="recipes.length" class="title">
+			<a ui-sref=".subcategory({ 
+				category: currCategory.name, 
+				subcategory: currSubcategory.name 
+			})">{{currSubcategory.titleName}}</a>
+		</div>
+		<ul>
+			<li ng-repeat="recipe in recipes">
+			<a ui-sref=".recipe({  
+				category: currCategory.name, 
+				subcategory: currSubcategory.name, 
+				recipe: name 
+			})" ui-sref-active="active">{{recipe.viewName}}</a>
+			</li>
+		</ul>
+	</div>
+</nav>
