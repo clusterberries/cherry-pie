@@ -1,0 +1,59 @@
+@import "globalVars.styl"
+
+font-family = 'PT Sans', sans-serif
+headerHeight = 120px
+
+/*** General ***/
+body 
+    color textColor
+    font 14px/1.3 font-family
+    
+a 
+    text-decoration none
+    color textColor
+    transition color 0.2s
+
+
+/*** Main top menu ***/
+header
+    height headerHeight
+    display flex
+    align-items center
+    border-bottom: 1px solid lightCherry
+    box-shadow shadow
+    position fixed
+    top 0
+    width 100%
+    z-index 1
+    ul 
+        display flex
+        align-items center
+        li 
+            margin-right 33px
+            a
+                position relative
+                &:hover
+                    color lightTextColor
+                &:after 
+                    content "" 
+                    display block
+                    position absolute
+                    left calc(50% - 4px)
+                    top 130%
+                    background-color mainGreen
+                    height 6px
+                    width 6px
+                    border-radius 3px
+                    opacity 0
+                    transition opacity 0.4s
+                &.active:after 
+                    opacity 1
+    .logo
+        margin -10px 82px 0 48px
+        img 
+            height 95px
+
+
+/*** Main part ***/
+main 
+    margin-top headerHeight 

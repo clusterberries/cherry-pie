@@ -1,0 +1,65 @@
+@import "globalVars.styl"
+
+transition = 0.4s ease-out
+panelOpen = 205px
+liWidth = panelOpen - 85px
+titleLeft = 52px
+titleWidth = panelOpen - titleLeft
+
+noselect()
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+
+.recipes
+    .side-panel
+        position fixed
+        height 100%
+        display flex
+        noselect()
+        box-shadow shadow
+        .categories
+            background-color blackCherry
+        .subcategories
+            background-color cherry
+        .recipes
+            background-color lightCherry
+        & > div 
+            width panelOpen
+            transition width transition 
+            position relative
+            overflow-x hidden
+            a
+                color textNavColor
+                &:hover
+                    color veryLightCherry
+            .arrow
+                width 9px
+                height 15px
+                background-image url('../img/arrow.png')
+                background-size cover
+                transition transform transition, left transition
+                position absolute
+                top 17px
+                left 25px
+            .title 
+                position absolute
+                top 15px
+                left titleLeft
+                width titleWidth
+            ul, .title
+                transition opacity transition
+            ul 
+                margin 60px 0 0 25px
+                li 
+                    width liWidth
+            &.minimized
+                width 35px
+                .arrow
+                    transform rotate(180deg)
+                    left 13px
+                ul, .title
+                    opacity 0
+    
