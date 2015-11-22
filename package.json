@@ -1,0 +1,24 @@
+{
+  "name": "CherryPie",
+  "version": "0.0.1",
+  "description": "Sandbox project for viewing and managing recipes.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clusterberries/cherry-pie.git"
+  },
+  "author": "Alexandra Govorkova <al.govorkova@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clusterberries/cherry-pie/issues"
+  },
+  "homepage": "https://github.com/clusterberries/cherry-pie",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "babel-preset-react": "^6.1.18"
+  }
+}
