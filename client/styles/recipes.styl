@@ -27,23 +27,23 @@ noselect()
         .recipes
             background-color lightCherry
         & > div 
+            position relative
             width panelOpen
             transition width transition 
-            position relative
             overflow-x hidden
             a
                 color textNavColor
                 &:hover
                     color veryLightCherry
             .arrow
+                position absolute
+                top 17px
+                left 25px
                 width 9px
                 height 15px
                 background-image url('../img/arrow.png')
                 background-size cover
                 transition transform transition, left transition
-                position absolute
-                top 17px
-                left 25px
             .title 
                 position absolute
                 top 15px
@@ -58,8 +58,8 @@ noselect()
             &.minimized
                 width 35px
                 .arrow
-                    transform rotate(180deg)
                     left 13px
+                    transform rotate(180deg)
                 ul, .title
                     opacity 0
     
