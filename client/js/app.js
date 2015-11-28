@@ -11,8 +11,8 @@
         RECIPES: '/recipes',
         CATEGORY: '/:category',
         CATEGORY_All: '/recipes/all',
-        SUBCATEGORY: '/:category/:subcategory',
-        RECIPE: '/:category/:subcategory/:recipe',
+        SUBCATEGORY: '/:subcategory',
+        RECIPE: '/:recipe',
         SEARCH: '/search',
         ABOUT: '/about'
     });
@@ -23,12 +23,6 @@
             $urlRouterProvider.otherwise(ROUTES.CATEGORY_All);
 
             $stateProvider
-            // .state('main', {
-            //     url: ROUTES.MAIN,
-            //     templateUrl: 'views/main.html',
-            //     controller: 'MainCtrl',
-            //     abstract: true
-            // }) 
             .state('recipes', {
                 url: ROUTES.RECIPES,
                 templateUrl: 'views/recipesMain.html',
@@ -37,15 +31,13 @@
             })          
             .state('recipes.category', {
                 url: ROUTES.CATEGORY,
-                templateUrl: 'views/category.html',
-                //controller: 'CategoryCtrl'
+                templateUrl: 'views/category.html'
             })
-            .state('recipes.subcategory', {
+            .state('recipes.category.subcategory', {
                 url: ROUTES.SUBCATEGORY,
                 templateUrl: 'views/subcategory.html'
-
             })
-            .state('recipes.recipe', {
+            .state('recipes.category.subcategory.recipe', {
                 url: ROUTES.RECIPE,
                 templateUrl: 'views/recipe.html',
                 controller: 'RecipeCtrl'
