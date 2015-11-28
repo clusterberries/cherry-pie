@@ -1,6 +1,10 @@
 'use strict';
 
 (function () {
+    var Config = {
+        CONTAINER_CLASSES: ['wide', 'normal', 'narrow', 'narrow2']
+    };
+
     angular.module('cherryApp').controller('CategoryCtrl', [
         '$scope', 
         '$state', 
@@ -48,6 +52,10 @@
             $scope.triggerPanel = function (panel) {
                 
             };
+
+            $scope.getContainerClass = function () {
+                return Config.CONTAINER_CLASSES[$scope.countOpenedPanels];
+            }
         }
     ]);
 }());

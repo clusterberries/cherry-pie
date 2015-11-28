@@ -2,7 +2,8 @@
 
 transition = 0.4s ease-out
 panelOpen = 205px
-liWidth = panelOpen - 85px
+panelClosed = 35px
+liWidth = panelOpen - 60px
 titleLeft = 52px
 titleWidth = panelOpen - titleLeft
 
@@ -21,7 +22,7 @@ noselect()
         noselect()
         box-shadow shadow
         .categories
-            background-color blackCherry
+            background-color darkCherry
         .subcategories
             background-color cherry
         .recipes
@@ -35,6 +36,8 @@ noselect()
                 color textNavColor
                 &:hover
                     color veryLightCherry
+                &.active 
+                    color black
             .arrow
                 position absolute
                 top 17px
@@ -52,14 +55,27 @@ noselect()
             ul, .title
                 transition opacity transition
             ul 
-                margin 60px 0 0 25px
+                margin-top 60px
                 li 
                     width liWidth
+                    padding-left 25px
             &.minimized
-                width 35px
+                width panelClosed
                 .arrow
                     left 13px
                     transform rotate(180deg)
                 ul, .title
                     opacity 0
+    .container
+        transition margin-left viewTransition
+        & > div // inner relative div for ui-router animation
+            position relative 
+        &.wide 
+            margin-left panelClosed * 3       
+        &.normal 
+            margin-left panelClosed * 2 + panelOpen
+        &.narrow
+            margin-left panelClosed + panelOpen * 2      
+        &.narrow2 
+            margin-left panelOpen * 3
     

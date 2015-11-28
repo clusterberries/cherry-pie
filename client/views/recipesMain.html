@@ -1,4 +1,6 @@
 <div class="recipes">
-    <nav-bar category-panel="categories" subcategory-panel="subcategories" recipe-panel="recipes"></nav-bar>
-    <ui-view></ui-view>
+    <nav-bar category-panel="categories" subcategory-panel="subcategories" recipe-panel="recipes" width="countOpenedPanels"></nav-bar>
+    <div class="container" ng-class="getContainerClass()">
+        <div><div ui-view></div></div>
+    </div>
 </div>
