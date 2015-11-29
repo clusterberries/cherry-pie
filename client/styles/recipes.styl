@@ -3,7 +3,6 @@
 transition = 0.4s ease-out
 panelOpen = 205px
 panelClosed = 35px
-liWidth = panelOpen - 60px
 titleLeft = 52px
 titleWidth = panelOpen - titleLeft
 
@@ -23,10 +22,16 @@ noselect()
         box-shadow shadow
         .categories
             background-color darkCherry
+            a.active 
+                background-color darkCherryShadowed
         .subcategories
             background-color cherry
+            a.active 
+                background-color cherryShadowed
         .recipes
             background-color lightCherry
+            a.active 
+                background-color lightCherryShadowed
         & > div 
             position relative
             width panelOpen
@@ -36,8 +41,6 @@ noselect()
                 color textNavColor
                 &:hover
                     color veryLightCherry
-                &.active 
-                    color black
             .arrow
                 position absolute
                 top 17px
@@ -56,9 +59,10 @@ noselect()
                 transition opacity transition
             ul 
                 margin-top 60px
-                li 
-                    width liWidth
-                    padding-left 25px
+                a 
+                    width panelOpen
+                    display block
+                    padding 4px 40px 4px 25px
             &.minimized
                 width panelClosed
                 .arrow

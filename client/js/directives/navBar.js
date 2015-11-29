@@ -3,16 +3,23 @@
 // TODO: there should be link in the top of panel with all dishes in this category
 
 (function () {
-    // <nav-bar panels="panels"></nav-bar>
+    /* <nav-bar 
+        category-panel="categories" 
+        subcategory-panel="subcategories" 
+        recipe-panel="recipes" 
+        panel-width="countOpenedPanels" 
+        is-state-active="isStateActive(state, name)"></nav-bar> */
     angular.module('cherryApp').directive('navBar', [
         function() {
             return {
+                restrict: 'AE',
                 templateUrl: 'views/directives/navBar.html',
                 scope: {
                     categories: '=categoryPanel',
                     subcategories: '=subcategoryPanel',
                     recipes: '=recipePanel',
-                    openedCount: "=width"       // is used to control with of nav bar and right container
+                    openedCount: '=panelWidth',     // is used to control with of nav bar and right container
+                    isStateActive: '&'              // function to check is a link active      
                 },
                 link: function(scope, element, attrs) {
                     // Recount panels
@@ -26,14 +33,9 @@
 
                     scope.triggerPanel = function (panel, isOpen) {
                         if (panel.disabled) { return; }
-                        // TODO please, rewrite this stuff
                         panel.open = (typeof isOpen === 'bool') ? isOpen : !panel.open;
                         checkPanelsCount();
                     };                    
-
-                    scope.openPanel = function (panel) {
-                        panel.open = true;
-                    };
 
                     scope.stopClose = function (event) {
                         event.stopPropagation();
@@ -46,7 +48,7 @@
                     scope.subcategories.open = false;
                     scope.recipes.open = false;
 
-                    scope.currSubcategory = scope.categories[1];
+                    scope.currCategory = scope.categories[1];
 
                     checkPanelsCount();
                 }

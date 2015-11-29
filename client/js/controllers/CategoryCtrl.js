@@ -49,13 +49,15 @@
                 },
             ];
 
-            $scope.triggerPanel = function (panel) {
-                
-            };
 
             $scope.getContainerClass = function () {
                 return Config.CONTAINER_CLASSES[$scope.countOpenedPanels];
-            }
+            };
+
+            // Function for nav-bar
+            $scope.isStateActive = function (state, name) {
+                return $state.params[state] === name;
+            };
         }
     ]);
 }());

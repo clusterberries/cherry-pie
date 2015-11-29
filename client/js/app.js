@@ -50,7 +50,6 @@
             .state('about', {
                 url: ROUTES.ABOUT,
                 templateUrl: 'views/about.html'
-                //controller: 'Controller'
             });
         }
     ]);
