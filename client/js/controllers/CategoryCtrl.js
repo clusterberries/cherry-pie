@@ -7,57 +7,118 @@
 
     angular.module('cherryApp').controller('CategoryCtrl', [
         '$scope', 
-        '$state', 
-        function ($scope, $state) {
+        '$state',
+        '$interval',
+        'CategoriesSvc',
+        function ($scope, $state, $interval, CategoriesSvc) {
+            function init () {
+                var categoryParam = $state.params.category;
+                var subcategoryParam = $state.params.subcategory;
 
-            function checkParams (newParams, oldParams) {
+                $scope.categories.open = false;
+                $scope.subcategories.open = false;
+                $scope.recipes.open = false;
 
+                $scope.categories = CategoriesSvc.getCategoriesList();
+                if (categoryParam === 'all') {
+                    $scope.categories.open = true;
+                    $scope.subcategories.disabled = true;
+                    $scope.recipes.disabled = true;
+                } else {
+                    $scope.subcategories.disabled = false;
+                    $scope.subcategories = CategoriesSvc.getSubcategoriesList(categoryParam);
+                    if (!subcategoryParam) { 
+                        $scope.subcategories.open = true;
+                        $scope.recipes.disabled = true;
+                    } else {
+                        $scope.recipes.disabled = false;
+                        $scope.recipes.open = true;
+                        $scope.recipes = CategoriesSvc.getRecipesList(subcategoryParam);
+                    }
+                }
+                $scope.checkPanelsCount();
+                //_load();
             }
 
-            $scope.$watch(function() {
-                return $state.params;
-            }, checkParams);
-
-            $scope.categories = [
-                {
-                    name: 'maincourse',
-                    viewName: 'Основные блюда',
-                    titleName: 'К основным блюдам'
-                },
-                {
-                    name: 'desserts', 
-                    viewName: 'Десерты',
-                    titleName: 'К десертам'
+            function checkParams(newParams, oldParams) {
+                // TODO: rewrite this pretty terrible structure
+                if (newParams.category !== oldParams.category) {
+                    if (newParams.category === 'all') {
+                        $scope.subcategories.disabled = true;
+                        $scope.recipes.disabled = true;
+                    } else {
+                        $scope.subcategories.disabled = false;
+                        $scope.subcategories = CategoriesSvc.getSubcategoriesList(newParams.category);
+                    }
                 }
-            ];
-            $scope.subcategories = [
-                {
-                    name: 'cakes',
-                    viewName: 'Торты',
-                    titleName: 'К тортам'
-                },
-                {
-                    name: 'pies', 
-                    viewName: 'Пироги',
-                    titleName: 'К пирогам'
+                if (newParams.subcategory !== oldParams.subcategory) {
+                    if (!newParams.subcategory) {
+                        $scope.recipes.disabled = true;
+                    } else {
+                        $scope.recipes.disabled = false;
+                        $scope.recipes = CategoriesSvc.getRecipesList(newParams.subcategory);
+                    }
                 }
-            ];
-            $scope.recipes = [
-                {
-                    name: 'napoleon',
-                    viewName: 'Наполеон'
-                },
-            ];
+                $scope.checkPanelsCount();
+                //_load();
+            }
 
+            function _load() {
+                if ($state.params.recipe) {
+                    loadRecipe($state.params.recipe);
+                } else {
+                    loadViews();
+                }
+            }
 
-            $scope.getContainerClass = function () {
-                return Config.CONTAINER_CLASSES[$scope.countOpenedPanels];
-            };
+            function loadViews(options) {
+                CategoriesSvc.getRecipes(options).then(function (data) {
+                    // $scope.recipesPreview = data;
+                }).catch(function (error) {
+                    console.log('CategoryCtrl ERROR: ' + error);
+                });
+            }
+
+            function loadRecipe(recipe) {
+                CategoriesSvc.getRecipeData(recipe).then(function (data) {
+                    // $scope.currRecipe = data;
+                }).catch(function (error) {
+                    console.log('CategoryCtrl ERROR: ' + error);
+                });
+            }
+
+            // Recount panels
+            $scope.checkPanelsCount = function () {
+                var count = 0;
+                $scope.categories.open && count++;
+                !$scope.subcategories.disabled && $scope.subcategories.open && count++;
+                !$scope.recipes.disabled && $scope.recipes.open && count++;
+                $scope.containerClass = Config.CONTAINER_CLASSES[count];
+            }
 
             // Function for nav-bar
             $scope.isStateActive = function (state, name) {
                 return $state.params[state] === name;
             };
+
+
+            /////////////////////////////////////////////////////////
+            // Initialization
+            /////////////////////////////////////////////////////////
+            $scope.categories = [];
+            $scope.subcategories = [];
+            $scope.recipes = [];            
+
+            // Wait while the answer from server will be received
+            var _checkInterval = $interval(function () {
+                if (CategoriesSvc.isReady()) {
+                    $interval.cancel(_checkInterval);
+                    init();
+                    $scope.$watch(function () {
+                        return $state.params;
+                    }, checkParams);
+                }
+            }, 100);
         }
     ]);
 }());

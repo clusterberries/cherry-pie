@@ -1,11 +1,10 @@
 <nav class="side-panel">
-    <div 
-        class="categories" 
+    <div class="categories"
         ng-class="!categories.open && 'minimized'"
         ng-click="triggerPanel(categories)">
 
         <div class="arrow"></div>
-        <ul>
+        <ul ng-show="categories.open">
             <li ng-repeat="category in categories">
             <a ui-sref=".category({ category: category.name })"
                 ng-class="{ active: isStateActive( {state: 'category', name: category.name} ) }" 
@@ -14,16 +13,15 @@
         </ul>
     </div> 
     
-    <div 
-        class="subcategories" 
-        ng-class="!subcategories.open && 'minimized'"
+    <div class="subcategories"
+        ng-class="(subcategories.disabled || !subcategories.open) && 'minimized'"
         ng-click="triggerPanel(subcategories)">
 
-        <div ng-if="subcategories.length" class="arrow"></div>
-        <div ng-if="subcategories.length" class="title">
+        <div ng-if="!subcategories.disabled" class="arrow"></div>
+        <div ng-if="!subcategories.disabled" class="title">
             <a ui-sref=".category( {category: 'all'} )" ng-click="triggerPanel(categories, true)">Ко всем блюдам</a>
         </div>
-        <ul>
+        <ul ng-show="subcategories.open">
             <li ng-repeat="subcategory in subcategories">
             <a ui-sref=".category.subcategory( {subcategory: subcategory.name} )"
                 ng-class="{ active: isStateActive( {state: 'subcategory', name: subcategory.name} ) }" 
@@ -32,18 +30,17 @@
         </ul>
     </div>
         
-    <div 
-        class="recipes" 
-        ng-class="!recipes.open && 'minimized'"
+    <div class="recipes"
+        ng-class="(recipes.disabled || !recipes.open) && 'minimized'"
         ng-click="triggerPanel(recipes)">
 
-        <div ng-if="recipes.length" class="arrow"></div>
-        <div ng-if="recipes.length" class="title">
+        <div ng-if="!recipes.disabled" class="arrow"></div>
+        <div ng-if="!recipes.disabled" class="title">
             <a ui-sref=".category({ 
                 category: currCategory.name 
             })" ng-click="triggerPanel(subcategories, true)">{{currCategory.titleName}}</a>
         </div>
-        <ul>
+        <ul ng-show="recipes.open">
             <li ng-repeat="recipe in recipes">
             <a ui-sref=".category.subcategory.recipe( {recipe: recipe.name} )" 
                 ng-class="{ active: isStateActive( {state: 'recipe', name: recipe.name} ) }" 
