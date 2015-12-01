@@ -14,12 +14,16 @@
                     _isReady = true;
                     _categories = data.categories;
                     _subcategories = data.subcategories;
+                    /* TODO: temporary load the recipes, but with normal db load only needed recipes.
+                    But. Think about the best solution. Cause we load recipes even if look 'all' category. 
+                    Does it make sence to load the whole recipe list? */
                     _recipes = data.recipes;
                 }).catch(function (error) {
                     console.log('CategoriesSvc ERROR: ' + error);
                 });
             }
 
+            // Load lists of categories and subcategories
             getAllCategories();
 
             return {

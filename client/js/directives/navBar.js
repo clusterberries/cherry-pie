@@ -7,10 +7,12 @@
         category-panel="categories" 
         subcategory-panel="subcategories" 
         recipe-panel="recipes" 
+        current="curr"
         check-panels="checkPanelsCount" 
         is-state-active="isStateActive(state, name)"></nav-bar> */
     angular.module('cherryApp').directive('navBar', [
-        function () {
+        '$timeout',
+        function ($timeout) {
             return {
                 restrict: 'AE',
                 templateUrl: 'views/directives/navBar.html',
@@ -18,24 +20,22 @@
                     categories: '=categoryPanel',
                     subcategories: '=subcategoryPanel',
                     recipes: '=recipePanel',
-                    checkPanels: '&',     // is used to control with of nav bar and right container
-                    isStateActive: '&'              // function to check is a link active      
+                    current: '=',
+                    checkPanels: '&',           // is used to control with of nav bar and right container
+                    isStateActive: '&'          // function to check is a link active      
                 },
                 link: function (scope, element) {
                     scope.triggerPanel = function (panel, isOpen) {
                         panel.open = (typeof isOpen === 'boolean') ? isOpen : !panel.open;
-                        scope.checkPanels();
+                        // Wait while state will change and then check the width
+                        $timeout(scope.checkPanels, 100);
                     };                    
 
                     scope.stopClose = function (event) {
                         event.stopPropagation();
+                        // Wait while state will change and then check the width
+                        $timeout(scope.checkPanels, 100);
                     };
-
-                    /////////////////////////////////////////////////////////
-                    // Initialization
-                    /////////////////////////////////////////////////////////
-                    // TODO this is temporary
-                    scope.currCategory = scope.categories[1];
                 }
             };
         }

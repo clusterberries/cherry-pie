@@ -11,6 +11,7 @@
         '$interval',
         'CategoriesSvc',
         function ($scope, $state, $interval, CategoriesSvc) {
+            // Set parameters according to the current state
             function init () {
                 var categoryParam = $state.params.category;
                 var subcategoryParam = $state.params.subcategory;
@@ -19,47 +20,51 @@
                 $scope.subcategories.open = false;
                 $scope.recipes.open = false;
 
-                $scope.categories = CategoriesSvc.getCategoriesList();
+                $scope.categories.arr = CategoriesSvc.getCategoriesList();
                 if (categoryParam === 'all') {
                     $scope.categories.open = true;
                     $scope.subcategories.disabled = true;
                     $scope.recipes.disabled = true;
                 } else {
+                    $scope.subcategories.arr = CategoriesSvc.getSubcategoriesList(categoryParam);
                     $scope.subcategories.disabled = false;
-                    $scope.subcategories = CategoriesSvc.getSubcategoriesList(categoryParam);
                     if (!subcategoryParam) { 
                         $scope.subcategories.open = true;
                         $scope.recipes.disabled = true;
                     } else {
                         $scope.recipes.disabled = false;
                         $scope.recipes.open = true;
-                        $scope.recipes = CategoriesSvc.getRecipesList(subcategoryParam);
+                        $scope.recipes.arr = CategoriesSvc.getRecipesList(subcategoryParam);
                     }
                 }
+                setCurrent(categoryParam, subcategoryParam);
                 $scope.checkPanelsCount();
                 //_load();
             }
 
             function checkParams(newParams, oldParams) {
-                // TODO: rewrite this pretty terrible structure
-                if (newParams.category !== oldParams.category) {
-                    if (newParams.category === 'all') {
+                var categoryParam = newParams.category;
+                var subcategoryParam = newParams.subcategory;
+
+                if (categoryParam !== oldParams.category) {
+                    if (categoryParam === 'all') {
                         $scope.subcategories.disabled = true;
                         $scope.recipes.disabled = true;
                     } else {
                         $scope.subcategories.disabled = false;
-                        $scope.subcategories = CategoriesSvc.getSubcategoriesList(newParams.category);
+                        $scope.subcategories.arr = CategoriesSvc.getSubcategoriesList(categoryParam);
                     }
                 }
-                if (newParams.subcategory !== oldParams.subcategory) {
-                    if (!newParams.subcategory) {
+                if (subcategoryParam !== oldParams.subcategory) {
+                    if (!subcategoryParam) {
                         $scope.recipes.disabled = true;
                     } else {
                         $scope.recipes.disabled = false;
-                        $scope.recipes = CategoriesSvc.getRecipesList(newParams.subcategory);
+                        $scope.recipes.arr = CategoriesSvc.getRecipesList(subcategoryParam);
                     }
                 }
-                $scope.checkPanelsCount();
+                setCurrent(categoryParam, subcategoryParam);
+                //$scope.checkPanelsCount();
                 //_load();
             }
 
@@ -87,6 +92,22 @@
                 });
             }
 
+            // Search parameters from state in category and subcategory arrays and set them
+            function setCurrent (currCategory, currSubcategory) {
+                $scope.categories.arr.some(function (categ) {
+                    if (categ.name === currCategory) {
+                        $scope.curr.category = categ;
+                        return true;
+                    }
+                });                
+                $scope.subcategories.arr.some(function (subcateg) {
+                    if (subcateg.name === currSubcategory) {
+                        $scope.curr.subcategory = subcateg;
+                        return true;
+                    }
+                });
+            }
+
             // Recount panels
             $scope.checkPanelsCount = function () {
                 var count = 0;
@@ -97,7 +118,10 @@
             }
 
             // Function for nav-bar
-            $scope.isStateActive = function (state, name) {
+            $scope.isStateActive = function (state, name, checkNested) {
+                // There should be one active link in a panel. Check state and set correct
+                if (checkNested && (state === 'category' && $state.params.subcategory && !$state.params.recipe) || 
+                        (state === 'subcategory' && $state.params.recipe)) { return false; }
                 return $state.params[state] === name;
             };
 
@@ -105,9 +129,10 @@
             /////////////////////////////////////////////////////////
             // Initialization
             /////////////////////////////////////////////////////////
-            $scope.categories = [];
-            $scope.subcategories = [];
-            $scope.recipes = [];            
+            $scope.categories = { arr: [] };
+            $scope.subcategories = { arr: [] };
+            $scope.recipes = { arr: [] };  
+            $scope.curr = { category: '', subcategory: '' };          
 
             // Wait while the answer from server will be received
             var _checkInterval = $interval(function () {

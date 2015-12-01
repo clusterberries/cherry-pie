@@ -1,6 +1,11 @@
 <div class="recipes">
-    <nav-bar category-panel="categories" subcategory-panel="subcategories" recipe-panel="recipes" check-panels="checkPanelsCount()" is-state-active="isStateActive(state, name)"></nav-bar>
-    <div class="container" ng-class="containerClass">
+    <nav-bar category-panel="categories" 
+        subcategory-panel="subcategories" 
+        recipe-panel="recipes" 
+        current="curr" 
+        check-panels="checkPanelsCount()" 
+        is-state-active="isStateActive(state, name, checkNested)"></nav-bar>
+    <div class="container {{containerClass}}">
         <div><div ui-view></div></div>
     </div>
 </div>
