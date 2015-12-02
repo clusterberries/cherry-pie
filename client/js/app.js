@@ -25,7 +25,7 @@
             $stateProvider
             .state('recipes', {
                 url: ROUTES.RECIPES,
-                templateUrl: 'views/recipesMain.html',
+                templateUrl: 'views/mainRecipesView.html',
                 abstract: true,
                 controller: 'CategoryCtrl'
             })          

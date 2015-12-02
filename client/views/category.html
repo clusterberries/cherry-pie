@@ -1,2 +1,7 @@
-<div ui-view class="categories">categories
+<div ui-view class="categories">
+    <ul>
+        <li ng-repeat="item in items">
+            <recipe-preview item="item"></recipe-preview>
+        </li>
+    </ul>
 </div>
