@@ -37,9 +37,9 @@
                         $scope.recipes.arr = CategoriesSvc.getRecipesList(subcategoryParam);
                     }
                 }
-                setCurrent(categoryParam, subcategoryParam);
+                _setCurrent(categoryParam, subcategoryParam);
                 $scope.checkPanelsCount();
-                //_load();
+                _load();
             }
 
             function checkParams(newParams, oldParams) {
@@ -63,37 +63,42 @@
                         $scope.recipes.arr = CategoriesSvc.getRecipesList(subcategoryParam);
                     }
                 }
-                setCurrent(categoryParam, subcategoryParam);
-                //$scope.checkPanelsCount();
-                //_load();
+                _setCurrent(categoryParam, subcategoryParam);
+                _load();
             }
 
             function _load() {
                 if ($state.params.recipe) {
-                    loadRecipe($state.params.recipe);
+                    _loadRecipe($state.params.recipe);
                 } else {
-                    loadViews();
+                    _loadViews({
+                        category: $state.params.category,
+                        subcategory: $state.params.subcategory
+                    });
                 }
             }
 
-            function loadViews(options) {
-                CategoriesSvc.getRecipes(options).then(function (data) {
-                    // $scope.recipesPreview = data;
+            function _loadViews(options) {
+                // TODO: this is temporary, add loading
+                // TODO: create nested directives inside preview?
+                $scope.items = CategoriesSvc.getFullRecipesList();
+/*                CategoriesSvc.getRecipes(options).then(function (data) {
+                    // $scope.items = data;
                 }).catch(function (error) {
                     console.log('CategoryCtrl ERROR: ' + error);
-                });
+                });*/
             }
 
-            function loadRecipe(recipe) {
-                CategoriesSvc.getRecipeData(recipe).then(function (data) {
+            function _loadRecipe(recipe) {
+/*                CategoriesSvc.getRecipeData(recipe).then(function (data) {
                     // $scope.currRecipe = data;
                 }).catch(function (error) {
                     console.log('CategoryCtrl ERROR: ' + error);
-                });
+                });*/
             }
 
             // Search parameters from state in category and subcategory arrays and set them
-            function setCurrent (currCategory, currSubcategory) {
+            function _setCurrent(currCategory, currSubcategory) {
                 $scope.categories.arr.some(function (categ) {
                     if (categ.name === currCategory) {
                         $scope.curr.category = categ;

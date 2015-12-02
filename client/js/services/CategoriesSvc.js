@@ -35,6 +35,16 @@
                 },
                 getRecipesList: function (subcategory) {
                     return _recipes[subcategory] || [];
+                },       
+                // TODO: temporary         
+                getFullRecipesList: function () {
+                    var recipes = [];
+                    for (var prop in _recipes) {
+                        if (_recipes.hasOwnProperty(prop)) {
+                            recipes = recipes.concat(_recipes[prop]);
+                        } 
+                    }
+                    return recipes;
                 },
                 getRecipes: function (options) {
                     return DataLoaderSvc.getRecipes(options) || [];
