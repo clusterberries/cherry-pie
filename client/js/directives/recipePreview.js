@@ -16,9 +16,20 @@
                     // TODO: why jquery doesn't work here?
                     var imageElem2 = element.find('.img-preview');
 
-                    imageElem.style.backgroundImage = 'url(' + scope.item.imgSmall + ')';
 
-                    // TODO: set url as .style.backgroundImage
+                    scope.triggerTags = function (tags) {
+                        // Hide/open tags or switch to another tab
+                        if (scope.currentTags === tags) {
+                            scope.isShown = !scope.isShown;
+                        } else {
+                            scope.isShown = true;
+                            scope.currentTags = tags;
+                        }
+                    };
+
+                    /*** Initialization ***/
+                    imageElem.style.backgroundImage = 'url(' + scope.item.imgSmall + ')';
+                    scope.isShown = false;
                 }
             };
         }

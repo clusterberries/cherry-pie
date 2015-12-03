@@ -1,10 +1,21 @@
 <div class="preview">
     <div class="img-preview">
-        <a ui-sref=".category.subcategory.recipe({ recipe: item.id })">{{item.name}}</a>
+        <a ui-sref=".subcategory.recipe({ subcategory: item.subcategory, recipe: item.id })">{{item.name}}</a>
     </div>
     <stars rating="item.rating"></stars>
-    <div>
-        <div class="tags">{{item.tags}}</div>
-        <div class="ingredients">{{item.ingredients}}</div>
+    <div class="tags-container">
+        <div class="tags-title" ng-click="triggerTags(item.tags)">
+            Теги
+            <div class="arrow-small" 
+                ng-class="(!isShown || currentTags !== item.tags) && 'hidden'"></div>
+        </div>
+        <div class="tags-title" ng-click="triggerTags(item.ingredients)">
+            Ингредиенты
+            <div class="arrow-small" 
+                ng-class="(!isShown || currentTags !== item.ingredients) && 'hidden'"></div>
+        </div>
+        <ul class="tags-list" ng-class="!isShown && 'hidden'">
+            <li class="tag" ng-repeat="tag in currentTags">{{tag}}</li>
+        </ul>
     </div>
 </div>

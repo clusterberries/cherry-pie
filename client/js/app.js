@@ -35,7 +35,7 @@
             })
             .state('recipes.category.subcategory', {
                 url: ROUTES.SUBCATEGORY,
-                templateUrl: 'views/subcategory.html'
+                templateUrl: 'views/category.html' //TODO: delete subcategory.html if really don't need it
             })
             .state('recipes.category.subcategory.recipe', {
                 url: ROUTES.RECIPE,

@@ -41,6 +41,9 @@
                     var recipes = [];
                     for (var prop in _recipes) {
                         if (_recipes.hasOwnProperty(prop)) {
+                            _recipes[prop].forEach(function (item) {
+                                item.subcategory = prop
+                            });
                             recipes = recipes.concat(_recipes[prop]);
                         } 
                     }

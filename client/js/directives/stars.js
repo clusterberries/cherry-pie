@@ -4,14 +4,21 @@
     /* <stars rating="item.rating"></stars> */
     angular.module('cherryApp').directive('stars', [
         function () {
+            var STAR_FULL_ICON = 'star-full-icon.svg';
+            var STAR_ICON = 'star-icon.svg';
+            var STARS_COUNT = 10;
             return {
                 restrict: 'E',
                 templateUrl: 'views/directives/stars.html',
+                replace: true,
                 scope: {
                     rating: '='     
                 },
                 link: function (scope, element) {
-
+                    scope.urls = [];
+                    for (var i = 0; i < STARS_COUNT; ++i) {
+                        scope.urls.push((i < scope.rating) ? STAR_FULL_ICON : STAR_ICON);
+                    }
                 }
             };
         }

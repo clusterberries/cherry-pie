@@ -4,9 +4,11 @@ font-family = 'PT Sans', sans-serif
 headerHeight = 120px
 
 /*** General ***/
-body 
+html
     font 14px/1.3 font-family
     color textColor
+    
+//body 
     
 a 
     text-decoration none
@@ -72,3 +74,14 @@ main
         opacity 0
     &.ng-leave
         opacity 1
+
+
+/*** Stars directive ***/
+starSize = 22px
+.stars
+    padding-top 4px
+    li 
+        display inline-block
+        img 
+            width starSize
+            height starSize

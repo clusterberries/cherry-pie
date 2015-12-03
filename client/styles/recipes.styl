@@ -1,6 +1,5 @@
 @import "globalVars.styl"
 
-transition = 0.4s ease-out
 panelOpen = 205px
 panelClosed = 35px
 titleLeft = 52px
@@ -13,7 +12,7 @@ noselect()
     user-select: none;
 
 
-.recipes
+.recipes-view
     .side-panel
         position fixed
         height 100%
@@ -35,7 +34,7 @@ noselect()
         & > div 
             position relative
             width panelOpen
-            transition width transition 0.1s // add delay cause there are delay when main view class changes 
+            transition width defTransition 0.1s // add delay cause there are delay when main view class changes 
             overflow-x hidden
             a
                 color textNavColor
@@ -47,16 +46,16 @@ noselect()
                 left 25px
                 width 9px
                 height 15px
-                background-image url('../img/arrow.png')
+                background-image url('../img/icons/arrow.png')
                 background-size cover
-                transition transform transition, left transition
+                transition transform defTransition, left defTransition
             .title 
                 position absolute
                 top 15px
                 left titleLeft
                 width titleWidth
             ul, .title
-                transition opacity transition
+                transition opacity defTransition
             ul 
                 margin-top 60px
                 a 
@@ -82,13 +81,15 @@ noselect()
             margin-left panelClosed + panelOpen * 2      
         &.narrow2 
             margin-left panelOpen * 3
-        ul 
+        .categories-list 
             display flex
-            padding 2%
+            padding 30px 2%
             flex-wrap wrap
-            li 
-                max-width 360px
-                margin 2%
+            .preview-item 
+                max-width 400px
+                margin 0 2% 10px
                 flex-basis 260px
                 flex-grow 1
+                .item-wrapper
+                    height 282px
     
