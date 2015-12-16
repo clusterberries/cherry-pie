@@ -6,11 +6,14 @@
     };
 
     angular.module('cherryApp').controller('CategoryCtrl', [
-        '$scope', 
+        '$scope',
         '$state',
+        '$element',
         '$interval',
         'CategoriesSvc',
-        function ($scope, $state, $interval, CategoriesSvc) {
+        function ($scope, $state, $element, $interval, CategoriesSvc) {
+            var _container = $element[0].querySelector('.container');
+
             // Set parameters according to the current state
             function init () {
                 var categoryParam = $state.params.category;
@@ -28,7 +31,7 @@
                 } else {
                     $scope.subcategories.arr = CategoriesSvc.getSubcategoriesList(categoryParam);
                     $scope.subcategories.disabled = false;
-                    if (!subcategoryParam) { 
+                    if (!subcategoryParam) {
                         $scope.subcategories.open = true;
                         $scope.recipes.disabled = true;
                     } else {
@@ -40,6 +43,10 @@
                 _setCurrent(categoryParam, subcategoryParam);
                 $scope.checkPanelsCount();
                 _load();
+
+                _container.addEventListener('click', sendActiveEvent);
+                _container.addEventListener('touchstart', sendActiveEvent);
+                document.addEventListener('scroll', sendActiveEvent);
             }
 
             function checkParams(newParams, oldParams) {
@@ -90,11 +97,12 @@
             }
 
             function _loadRecipe(recipe) {
-/*                CategoriesSvc.getRecipeData(recipe).then(function (data) {
-                    // $scope.currRecipe = data;
+                CategoriesSvc.getRecipeData(1).then(function (data) {
+                    //$scope.currRecipe = data;
+                    $scope.$broadcast('recipe/loaded', data);
                 }).catch(function (error) {
                     console.log('CategoryCtrl ERROR: ' + error);
-                });*/
+                });
             }
 
             // Search parameters from state in category and subcategory arrays and set them
@@ -104,13 +112,17 @@
                         $scope.curr.category = categ;
                         return true;
                     }
-                });                
+                });
                 $scope.subcategories.arr.some(function (subcateg) {
                     if (subcateg.name === currSubcategory) {
                         $scope.curr.subcategory = subcateg;
                         return true;
                     }
                 });
+            }
+
+            function sendActiveEvent() {
+                $scope.$broadcast('container/active');
             }
 
             // Recount panels
@@ -125,7 +137,7 @@
             // Function for nav-bar
             $scope.isStateActive = function (state, name, checkNested) {
                 // There should be one active link in a panel. Check state and set correct
-                if (checkNested && (state === 'category' && $state.params.subcategory && !$state.params.recipe) || 
+                if (checkNested && (state === 'category' && $state.params.subcategory && !$state.params.recipe) ||
                         (state === 'subcategory' && $state.params.recipe)) { return false; }
                 return $state.params[state] === name;
             };
@@ -136,8 +148,8 @@
             /////////////////////////////////////////////////////////
             $scope.categories = { arr: [] };
             $scope.subcategories = { arr: [] };
-            $scope.recipes = { arr: [] };  
-            $scope.curr = { category: '', subcategory: '' };          
+            $scope.recipes = { arr: [] };
+            $scope.curr = { category: '', subcategory: '' };
 
             // Wait while the answer from server will be received
             var _checkInterval = $interval(function () {

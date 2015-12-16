@@ -9,7 +9,7 @@
         height 165px
         position relative
         background-size cover
-        a 
+        a
             position absolute
             bottom 0
             width 100%
@@ -23,7 +23,6 @@
             background-color darkShadowColor
     .tags-container
         margin-bottom 5px
-        font-size fontSmall
         .tags-title
             display inline-block
             margin 5px 35px 5px 0
@@ -35,18 +34,12 @@
                 margin-left 3px
                 background-image url('../img/icons/arrow-small.png')
                 background-size cover
-                transition transform defTransition
+                transition transform defaultTransition
                 &.hidden
                     transform rotate(180deg)
         .tags-list
             height 44px
             overflow hidden
-            transition height defTransition
-            &.hidden 
+            transition height defaultTransition
+            &.hidden
                 height 0
-            li 
-                display inline-block
-                margin 4px 4px 0 0
-                padding 0 10px 2px
-                color textNavColor
-                background-color mainGreen

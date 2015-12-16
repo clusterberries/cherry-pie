@@ -1,0 +1,76 @@
+@import "globalVars.styl"
+
+noselect()
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+.side-panel
+    position fixed
+    height 100%
+    display flex
+    z-index 1
+    noselect()
+    box-shadow shadow
+    .nav-block
+        position relative
+        width panelOpen
+        transition width defaultTransition 0.1s // add delay cause there are delay when main view class changes
+        overflow hidden
+        &.categories
+            background-color darkCherry
+            a.active
+                background-color darkCherryShadowed
+        &.subcategories
+            background-color cherry
+            a.active
+                background-color cherryShadowed
+        &.recipes
+            background-color lightCherry
+            a.active
+                background-color lightCherryShadowed
+        a
+            color textNavColor
+            &:hover
+                color veryLightCherry
+        .arrow
+            position absolute
+            top 17px
+            left 25px
+            width 9px
+            height 15px
+            background-image url('../img/icons/arrow.png')
+            background-size cover
+            transition transform defaultTransition, left defaultTransition
+        .title
+            position absolute
+            top 15px
+            left titleLeft
+            width titleWidth
+        ul, .title
+            transition opacity defaultTransition
+        ul
+            margin-top 60px
+            a
+                width panelOpen
+                display block
+                padding 4px 40px 4px 25px
+        &.minimized, &.disabled
+            width panelClosed
+        &.minimized
+            .arrow
+                left 13px
+                transform rotate(180deg)
+            ul, .title
+                opacity 0
+        &.disabled *
+            display none
+
+@media (max-width: 1100px)
+    .side-panel
+        .nav-block
+            position fixed
+            height 100%
+            &.disabled
+                width 0

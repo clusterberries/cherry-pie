@@ -1,1 +1,30 @@
-<div>Recipe</div>
+<div class="single-recipe">
+    <div class="flex-row">
+        <div class="img-main"></div>
+        <div class="info-main">
+            <h1>{{::name}}</h1>
+            <div class="date">{{::date}}</div>
+            <div><stars rating="rating"></stars></div>
+            <ul class="tags-list">
+                <li class="tag" ng-repeat="tag in tags">{{::tag}}</li>
+            </ul>
+            <h2>Ингредиенты:</h2>
+            <ul class="ingredients-list">
+                <li class="ingredient" ng-repeat="ingredient in ingredients">
+                    <span>{{::ingredient}}</span>
+                    <span class="ingr-count">{{::ingredientsCount[ingredient]}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="cook-title">Приготовление:</h2>
+    <div class="flex-row">
+        <div class="description" ng-bind-html="::cooking"></div>
+        <div class="image-panel">
+            <div class="recipe-img" ng-repeat="imageLink in images track by $index">
+                <img ng-src="{{::imageLink}}">
+            </div>
+        </div>
+    </div>
+</div>

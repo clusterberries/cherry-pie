@@ -1,65 +1,67 @@
 <nav class="side-panel">
-    <div class="categories"
+    <div class="nav-block categories"
         ng-class="!categories.open && 'minimized'"
         ng-click="triggerPanel(categories)">
 
         <div class="arrow"></div>
         <ul ng-show="categories.open">
-            <li><a ui-sref=".category({ category: 'all' })"
-                ng-class="{ active: isStateActive( {state: 'category', name: 'all'} ) }" 
-                ng-click="stopClose($event)">Все блюда</a></li>
+            <li>
+                <a ui-sref=".category({ category: 'all' })"
+                    ng-class="{ active: isStateActive( {state: 'category', name: 'all'} ) }"
+                    ng-click="stayOpen($event)">Все блюда</a>
+            </li>
             <li ng-repeat="category in categories.arr">
-            <a ui-sref=".category({ category: category.name })"
-                ng-class="{ active: isStateActive( {state: 'category', name: category.name} ) }" 
-                ng-click="triggerPanel(subcategories, true)">{{category.viewName}}</a>
+                <a ui-sref=".category({ category: category.name })"
+                    ng-class="{ active: isStateActive( {state: 'category', name: category.name} ) }"
+                    ng-click="triggerPanel(subcategories, true)">{{category.viewName}}</a>
             </li>
         </ul>
-    </div> 
-    
-    <div class="subcategories"
-        ng-class="(subcategories.disabled || !subcategories.open) && 'minimized'"
+    </div>
+
+    <div class="nav-block subcategories"
+        ng-class="{disabled: subcategories.disabled, minimized: !subcategories.open}"
         ng-click="triggerPanel(subcategories)">
 
-        <div ng-if="!subcategories.disabled" class="arrow"></div>
-        <div ng-if="!subcategories.disabled" class="title">
+        <div class="arrow"></div>
+        <div class="title">
             <a ui-sref=".category( {category: 'all'} )" ng-click="triggerPanel(categories, true)">Ко всем блюдам</a>
         </div>
         <ul ng-show="subcategories.open">
             <li><a ui-sref=".category( {category: current.category.name} )"
                 ng-class="{ active: isStateActive({
-                    state: 'category', 
-                    name: current.category.name, 
-                    checkNested: true}) }" 
-                ng-click="stopClose($event)">{{current.category.viewName}}</a></li>
+                    state: 'category',
+                    name: current.category.name,
+                    checkNested: true}) }"
+                ng-click="stayOpen($event)">{{current.category.viewName}}</a></li>
             <li ng-repeat="category in categories.arr">
             <li ng-repeat="subcategory in subcategories.arr">
             <a ui-sref=".category.subcategory( {subcategory: subcategory.name} )"
-                ng-class="{ active: isStateActive( {state: 'subcategory', name: subcategory.name} ) }" 
+                ng-class="{ active: isStateActive( {state: 'subcategory', name: subcategory.name} ) }"
                 ng-click="triggerPanel(recipes, true)">{{subcategory.viewName}}</a>
             </li>
         </ul>
     </div>
-        
-    <div class="recipes"
-        ng-class="(recipes.disabled || !recipes.open) && 'minimized'"
+
+    <div class="nav-block recipes"
+        ng-class="{disabled: recipes.disabled, minimized: !recipes.open}"
         ng-click="triggerPanel(recipes)">
 
-        <div ng-if="!recipes.disabled" class="arrow"></div>
-        <div ng-if="!recipes.disabled" class="title">
-            <a ui-sref=".category({ category: current.category.name })" 
+        <div class="arrow"></div>
+        <div class="title">
+            <a ui-sref=".category({ category: current.category.name })"
                 ng-click="triggerPanel(subcategories, true)">{{current.category.titleName}}</a>
         </div>
         <ul ng-show="recipes.open">
             <li><a ui-sref=".category.subcategory( {subcategory: current.subcategory.name} )"
                 ng-class="{ active: isStateActive({
-                    state: 'subcategory', 
-                    name: current.subcategory.name, 
+                    state: 'subcategory',
+                    name: current.subcategory.name,
                     checkNested: true}) }"
-                ng-click="stopClose($event)">{{current.subcategory.viewName}}</a></li>
+                ng-click="stayOpen($event)">{{current.subcategory.viewName}}</a></li>
             <li ng-repeat="recipe in recipes.arr">
-            <a ui-sref=".category.subcategory.recipe( {recipe: recipe.id.toString()} )" 
-                ng-class="{ active: isStateActive( {state: 'recipe', name: recipe.id.toString()} ) }" 
-                ng-click="stopClose($event)">{{recipe.name}}</a>
+            <a ui-sref=".category.subcategory.recipe( {recipe: recipe.id.toString()} )"
+                ng-class="{ active: isStateActive( {state: 'recipe', name: recipe.id.toString()} ) }"
+                ng-click="stayOpen($event)">{{recipe.name}}</a>
             </li>
         </ul>
     </div>

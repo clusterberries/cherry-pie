@@ -12,13 +12,17 @@
                 templateUrl: 'views/directives/stars.html',
                 replace: true,
                 scope: {
-                    rating: '='     
+                    rating: '='
                 },
                 link: function (scope, element) {
-                    scope.urls = [];
-                    for (var i = 0; i < STARS_COUNT; ++i) {
-                        scope.urls.push((i < scope.rating) ? STAR_FULL_ICON : STAR_ICON);
+                    function setStars() {
+                        scope.urls = [];
+                        for (var i = 0; i < STARS_COUNT; ++i) {
+                            scope.urls.push((i < scope.rating) ? STAR_FULL_ICON : STAR_ICON);
+                        }
                     }
+
+                    scope.$watch('rating', setStars);
                 }
             };
         }

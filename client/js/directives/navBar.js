@@ -3,16 +3,17 @@
 // TODO: there should be link in the top of panel with all dishes in this category
 
 (function () {
-    /* <nav-bar 
-        category-panel="categories" 
-        subcategory-panel="subcategories" 
-        recipe-panel="recipes" 
+    /* <nav-bar
+        category-panel="categories"
+        subcategory-panel="subcategories"
+        recipe-panel="recipes"
         current="curr"
-        check-panels="checkPanelsCount" 
+        check-panels="checkPanelsCount"
         is-state-active="isStateActive(state, name)"></nav-bar> */
     angular.module('cherryApp').directive('navBar', [
         '$timeout',
-        function ($timeout) {
+        '$window',
+        function ($timeout, $window) {
             return {
                 restrict: 'AE',
                 templateUrl: 'views/directives/navBar.html',
@@ -22,20 +23,44 @@
                     recipes: '=recipePanel',
                     current: '=',
                     checkPanels: '&',           // is used to control with of nav bar and right container
-                    isStateActive: '&'          // function to check is a link active      
+                    isStateActive: '&'          // function to check is a link active
                 },
                 link: function (scope, element) {
+                    var BOUNDING_WIDTH = 1100;
+                    var _isMinimized = $window.innerWidth < BOUNDING_WIDTH;
+
+                    function closePanels() {
+                        scope.triggerPanel(scope.categories, false);
+                        scope.triggerPanel(scope.subcategories, false);
+                        scope.triggerPanel(scope.recipes, false);
+                    }
+
+                    function handleResize() {
+                        var isMinimizedNew =  $window.innerWidth < BOUNDING_WIDTH;
+                        if (_isMinimized === isMinimizedNew) { return; }
+
+                        _isMinimized = isMinimizedNew;
+                        if (_isMinimized) {
+                            closePanels();
+                        }
+                    }
+
                     scope.triggerPanel = function (panel, isOpen) {
                         panel.open = (typeof isOpen === 'boolean') ? isOpen : !panel.open;
                         // Wait while state will change and then check the width
                         $timeout(scope.checkPanels, 100);
-                    };                    
+                    };
 
-                    scope.stopClose = function (event) {
+                    scope.stayOpen = function (event) {
                         event.stopPropagation();
                         // Wait while state will change and then check the width
                         $timeout(scope.checkPanels, 100);
                     };
+
+                    $window.addEventListener('resize', handleResize);
+                    scope.$on('container/active', closePanels);
+
+                    _isMinimized && closePanels(); // TODO: do this after event
                 }
             };
         }

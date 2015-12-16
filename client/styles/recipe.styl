@@ -1,0 +1,48 @@
+@import "globalVars.styl"
+
+.single-recipe
+    min-width 800px
+    padding topPadding 4%
+    h2
+        margin 20px 0 7px
+    .img-main
+        width 43%
+        min-height 250px
+        max-height 400px
+    .info-main
+        position relative
+        width 55%
+        .date
+            position absolute
+            top 0
+            right 0
+            color lightTextColor
+        .ingredients-list
+            margin-bottom 10px
+            li
+                margin-left 35px
+                list-style circle
+                span
+                    display inline-block
+                    width 35%
+                    vertical-align bottom
+                    overflow hidden
+                    text-overflow ellipsis
+                    &.ingr-count
+                        font-weight bold
+    .cook-title
+        margin-top 40px
+    .description
+        width 68%
+        p
+            margin 0.5em 0
+    .image-panel
+        width 30%
+        font-size: 0;
+        .recipe-img
+            max-height 300px
+            transition defaultTransition
+            cursor pointer
+            &:hover
+                opacity 0.8
+
