@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/bower_components'));
 app.use(express.static(__dirname + '/client'));
 
 app.get('/api/categories', reader.getCategories);
-//app.get('/api/recipe/:id', reader.getRecipe);
+app.get('/api/recipe/:id', reader.getRecipe);
 //app.get('/api/:category/:subcategory', reader.getRecipesPreviews);
 
 app.listen(8000);
