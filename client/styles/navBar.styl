@@ -74,3 +74,17 @@ noselect()
             height 100%
             &.disabled
                 width 0
+
+@media (max-width: 860px)
+    .side-panel
+        .nav-block
+            &.categories
+                .arrow
+                    display none
+                ul
+                    margin-top 23px
+            &.minimized
+                width 0
+            .arrow
+                left 23px
+                transform rotate(180deg)

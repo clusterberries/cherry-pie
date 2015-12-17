@@ -8,10 +8,12 @@ header
     height headerHeight
     display flex
     align-items center
-    border-bottom: 1px solid lightCherry
+    border-bottom 1px solid lightCherry
     box-shadow shadow
     background-color headerColor
     z-index 2
+    .burger
+        display none
     ul
         display flex
         align-items center
@@ -49,3 +51,26 @@ header
             margin-top -5px
         .logo
             display none
+
+@media (max-width: 860px)
+    header
+        min-width 400px
+        .burger
+            width 40px
+            height 40px
+            margin-left 18px
+            display block
+            background-image url('../img/icons/menu-icon.svg')
+            background-size cover
+            cursor pointer
+            transition defaultTransition
+            &.active, &:hover
+                opacity 0.6
+            &.active:hover
+                opacity 0.7
+            &.closed
+                width 0
+        ul
+            margin-left 40px
+            li
+                margin-right 25px
