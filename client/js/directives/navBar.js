@@ -47,19 +47,18 @@
                         }
                     }
 
-                    function onMenuTrigger(event, isOpen) {
+                    function onMenuTrigger() {
                         if (!$scope.recipes.disabled) {
-                            $scope.triggerPanel($scope.recipes, isOpen);
+                            $scope.triggerPanel($scope.recipes);
                         } else if (!$scope.subcategories.disabled) {
-                            $scope.triggerPanel($scope.subcategories, isOpen);
+                            $scope.triggerPanel($scope.subcategories);
                         } else {
-                            $scope.triggerPanel($scope.categories, isOpen);
+                            $scope.triggerPanel($scope.categories);
                         }
                     }
 
                     $scope.triggerPanel = function (panel, isOpen) {
                         panel.open = (typeof isOpen === 'boolean') ? isOpen : !panel.open;
-                        $scope.$emit('panel/triggered', panel.open);
                         // Wait while state will change and then check the width
                         $timeout($scope.checkPanels, 100);
                     };

@@ -6,12 +6,8 @@
         function ($scope) {
             $scope.triggerMenu = function () {
                 $scope.activeMenu = !$scope.activeMenu;
-                $scope.$broadcast('menu/triggered', $scope.activeMenu);
+                $scope.$broadcast('menu/triggered');
             };
-
-            $scope.$on('panel/triggered', function (event, isOpen) {
-                $scope.activeMenu = isOpen;
-            });
         }
     ]);
 }());
