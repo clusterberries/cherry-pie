@@ -1,7 +1,6 @@
 @import "globalVars.styl"
 
 .single-recipe
-    min-width 800px
     padding topPadding 4%
     h2
         margin 20px 0 7px
@@ -9,6 +8,7 @@
         width 43%
         min-height 250px
         max-height 400px
+        background-size cover
     .info-main
         position relative
         width 55%
@@ -41,8 +41,44 @@
         font-size: 0;
         .recipe-img
             max-height 300px
+            overflow hidden
             transition defaultTransition
             cursor pointer
             &:hover
                 opacity 0.8
 
+@media (max-width: 1100px)
+    .single-recipe
+        padding-top topPaddingMin
+
+@media (max-width: 860px)
+    .single-recipe
+        .flex-row
+            flex-direction column
+        .img-main
+            height 350px
+            width 100%
+        .info-main
+            width 100%
+            margin-top 20px
+            .ingredients-list
+                li span
+                    width 40%
+        .description
+            width 100%
+            margin-bottom 20px
+        .image-panel
+            width 100%
+            .recipe-img
+                max-height 400px
+
+@media (max-width: 560px)
+    .single-recipe
+        .img-main
+            height 270px
+        .info-main
+            .ingredients-list li span
+                    width 49%
+        .image-panel
+            .recipe-img
+                max-height 300px
