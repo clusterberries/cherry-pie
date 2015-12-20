@@ -4,7 +4,7 @@
         ng-click="triggerPanel(categories)">
 
         <div class="arrow"></div>
-        <ul ng-show="categories.open">
+        <ul ng-class="{ visible: categories.open }">
             <li>
                 <a ui-sref=".category({ category: 'all' })"
                     ng-class="{ active: isStateActive( {state: 'category', name: 'all'} ) }"
@@ -26,7 +26,7 @@
         <div class="title">
             <a ui-sref=".category( {category: 'all'} )" ng-click="triggerPanel(categories, true)">Ко всем блюдам</a>
         </div>
-        <ul ng-show="subcategories.open">
+        <ul ng-class="{ visible: subcategories.open }">
             <li><a ui-sref=".category( {category: current.category.name} )"
                 ng-class="{ active: isStateActive({
                     state: 'category',
@@ -51,7 +51,7 @@
             <a ui-sref=".category({ category: current.category.name })"
                 ng-click="triggerPanel(subcategories, true)">{{current.category.titleName}}</a>
         </div>
-        <ul ng-show="recipes.open">
+        <ul ng-class="{ visible: recipes.open }">
             <li><a ui-sref=".category.subcategory( {subcategory: current.subcategory.name} )"
                 ng-class="{ active: isStateActive({
                     state: 'subcategory',

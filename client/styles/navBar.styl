@@ -1,10 +1,10 @@
 @import "globalVars.styl"
 
 noselect()
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    -webkit-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
 
 .side-panel
     position fixed
@@ -16,7 +16,7 @@ noselect()
     .nav-block
         position relative
         width panelOpen
-        transition width defaultTransition 0.1s // add delay cause there are delay when main view class changes
+        transition width defaultTransition
         overflow hidden
         &.categories
             background-color darkCherry
@@ -52,6 +52,8 @@ noselect()
             transition opacity defaultTransition
         ul
             margin-top 60px
+            &:not(.visible)
+                visibility hidden
             a
                 width panelOpen
                 display block
@@ -74,17 +76,17 @@ noselect()
             height 100%
             &.disabled
                 width 0
-
-@media (max-width: 860px)
-    .side-panel
-        .nav-block
             &.categories
                 .arrow
                     display none
                 ul
                     margin-top 23px
-            &.minimized
-                width 0
             .arrow
                 left 23px
                 transform rotate(180deg)
+
+@media (max-width: 860px)
+    .side-panel
+        .nav-block
+            &.minimized
+                width 0
