@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     angular.module('cherryApp').controller('MainCtrl', [
         '$scope',
         function ($scope) {

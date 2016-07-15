@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     var app = angular.module('cherryApp', [
         'ui.router',
         'ngAnimate'
@@ -62,7 +62,7 @@
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
         }
-    ])
+    ]);
 
 
 }());

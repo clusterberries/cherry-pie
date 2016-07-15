@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     /* <stars rating="item.rating"></stars> */
     angular.module('cherryApp').directive('stars', [
         function () {

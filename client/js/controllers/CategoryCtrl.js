@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     var Config = {
         CONTAINER_CLASSES: ['wide', 'normal', 'narrow', 'narrow2']
     };

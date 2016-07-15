@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     angular.module('cherryApp').factory('CategoriesSvc', [
         'DataLoaderSvc',
         function (DataLoaderSvc) {
@@ -42,7 +42,7 @@
                     for (var prop in _recipes) {
                         if (_recipes.hasOwnProperty(prop)) {
                             _recipes[prop].forEach(function (item) {
-                                item.subcategory = prop
+                                item.subcategory = prop;
                             });
                             recipes = recipes.concat(_recipes[prop]);
                         }

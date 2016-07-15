@@ -1,8 +1,8 @@
-'use strict';
-
 // TODO: there should be link in the top of panel with all dishes in this category
 
 (function () {
+    'use strict';
+
     /* <nav-bar
         category-panel="categories"
         subcategory-panel="subcategories"

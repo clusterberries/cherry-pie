@@ -1,6 +1,6 @@
-'use strict';
-
 (function () {
+    'use strict';
+
     /* <recipe-preview item="item"></recipe-preview> */
     angular.module('cherryApp').directive('recipePreview', [
         function () {
@@ -9,7 +9,7 @@
                 templateUrl: 'views/directives/recipePreview.html',
                 replace: true,
                 scope: {
-                    item: '='     
+                    item: '='
                 },
                 link: function (scope, element) {
                     var imageElem = element[0].getElementsByClassName('img-preview')[0];
