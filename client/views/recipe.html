@@ -22,7 +22,9 @@
     <div class="flex-row">
         <div class="description" ng-bind-html="::cooking"></div>
         <div class="image-panel">
-            <div class="recipe-img" ng-repeat="imageLink in images track by $index">
+            <div class="recipe-img"
+                ng-repeat="imageLink in images track by $index"
+                ng-click="openImage(imageLink)">
                 <img ng-src="{{::imageLink}}">
             </div>
         </div>

@@ -57,6 +57,9 @@
                 },
                 isReady: function () {
                     return _isReady;
+                },
+                getTags: function () {
+                    return DataLoaderSvc.getTags();
                 }
             };
         }

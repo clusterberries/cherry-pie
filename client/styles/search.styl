@@ -1,0 +1,48 @@
+@import "globalVars.styl"
+
+paddingSides = 4%
+
+.search-panel
+    background-color searchColor
+    padding 20px paddingSides
+    .tags-container
+        ul
+            max-width 900px
+        .tag
+            cursor pointer
+    .input
+        input
+            padding 5px
+            width 50%
+        .img-search
+            height 30px
+            width 30px
+            top 10px
+            left 5px
+            position relative
+            display inline-block
+            background-image url('../img/icons/search.svg')
+            background-size cover
+            opacity 0.3
+            transition defaultTransition
+            cursor pointer
+            &:hover
+                opacity 0.5
+    .tags-result
+        margin-top 15px
+        .tags-search
+            margin 5px 0
+            ul
+                display inline-block
+    .sort
+        margin-top 15px
+
+@media (max-width: 1100px)
+    .search-panel
+        .input input
+                width 70%
+
+@media (max-width: 860px)
+    .search-panel
+        .input input
+                width 90%

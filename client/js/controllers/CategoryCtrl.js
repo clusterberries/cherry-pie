@@ -88,7 +88,17 @@
             function _loadViews(options) {
                 // TODO: this is temporary, add loading
                 // TODO: create nested directives inside preview?
-                $scope.items = CategoriesSvc.getFullRecipesList();
+                if (options.category && options.category !== 'all') {
+                    if (options.subcategory) {
+                        $scope.items = CategoriesSvc.getRecipesList(options.subcategory);
+                    } else if (options.category !== 'desserts') {
+                        $scope.items = CategoriesSvc.getRecipesList(options.category);
+                    } else {
+                        $scope.items = CategoriesSvc.getRecipesList('cakes').concat(CategoriesSvc.getRecipesList('pies'));
+                    }
+                } else {
+                    $scope.items = CategoriesSvc.getFullRecipesList();
+                }
 /*                CategoriesSvc.getRecipes(options).then(function (data) {
                     // $scope.items = data;
                 }).catch(function (error) {
@@ -97,7 +107,7 @@
             }
 
             function _loadRecipe(recipe) {
-                CategoriesSvc.getRecipeData(1).then(function (data) {
+                CategoriesSvc.getRecipeData(recipe).then(function (data) {
                     //$scope.currRecipe = data;
                     $scope.$broadcast('recipe/loaded', data);
                 }).catch(function (error) {

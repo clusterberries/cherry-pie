@@ -18,7 +18,7 @@
     });
 
     app.config(['$stateProvider', '$urlRouterProvider', 'ROUTES',
-        function($stateProvider, $urlRouterProvider, ROUTES) { 
+        function($stateProvider, $urlRouterProvider, ROUTES) {
 
             $urlRouterProvider.otherwise(ROUTES.CATEGORY_All);
 
@@ -28,7 +28,7 @@
                 templateUrl: 'views/mainRecipesView.html',
                 abstract: true,
                 controller: 'CategoryCtrl'
-            })          
+            })
             .state('recipes.category', {
                 url: ROUTES.CATEGORY,
                 templateUrl: 'views/category.html'
@@ -54,10 +54,10 @@
         }
     ]);
 
-    app.run([ 
-        '$rootScope', 
-        '$state', 
-        '$stateParams', 
+    app.run([
+        '$rootScope',
+        '$state',
+        '$stateParams',
         function ($rootScope, $state, $stateParams) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
@@ -65,4 +65,4 @@
     ])
 
 
-}()); 
+}());

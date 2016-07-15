@@ -3,9 +3,13 @@
 (function () {
     angular.module('cherryApp').controller('RecipeCtrl', [
         '$scope',
+        '$rootScope',
         '$element',
         '$sce',
-        function ($scope, $element, $sce) {
+        '$document',
+        function ($scope, $rootScope, $element, $sce, $document) {
+            var _popup;
+
             function init(event, recipe) {
                 $scope.cooking = arrToHtml(recipe.cooking);
                 delete recipe.cooking;
@@ -23,6 +27,24 @@
 
                 return $sce.trustAsHtml(text);
             }
+
+            function removePopup() {
+                $rootScope.$apply(function () {
+                    _popup.remove();
+                    //_popup = null;
+                });
+            }
+
+            $scope.openImage = function (link) {
+                var template =
+                    '<div class="dark-background"><div class="popup">' +
+                        '<div class="close-cross"></div>' +
+                        '<img src="' + link + '">' +
+                    '</div></div>';
+                $document[0].body.querySelector('main').innerHTML += template;
+                _popup = $document[0].body.querySelector('.dark-background');
+                _popup.querySelector('.close-cross').addEventListener('click', removePopup);
+            };
 
             $scope.$on('recipe/loaded', init);
         }

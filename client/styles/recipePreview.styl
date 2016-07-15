@@ -21,25 +21,26 @@
             font-size fontBig
             color textNavColor
             background-color darkShadowColor
-    .tags-container
-        margin-bottom 5px
-        .tags-title
+
+.tags-container
+    margin-bottom 5px
+    .tags-title
+        display inline-block
+        margin 5px 35px 5px 0
+        cursor pointer
+        .arrow-small
+            width 9px
+            height 5px
             display inline-block
-            margin 5px 35px 5px 0
-            cursor pointer
-            .arrow-small
-                width 9px
-                height 5px
-                display inline-block
-                margin-left 3px
-                background-image url('../img/icons/arrow-small.png')
-                background-size cover
-                transition transform defaultTransition
-                &.hidden
-                    transform rotate(180deg)
-        .tags-list
-            height 44px
-            overflow hidden
-            transition height defaultTransition
+            margin-left 3px
+            background-image url('../img/icons/arrow-small.png')
+            background-size cover
+            transition transform defaultTransition
             &.hidden
-                height 0
+                transform rotate(180deg)
+    .tags-list
+        height 44px
+        overflow hidden
+        transition height defaultTransition
+        &.hidden
+            height 0

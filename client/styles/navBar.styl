@@ -52,8 +52,6 @@ noselect()
             transition opacity defaultTransition
         ul
             margin-top 60px
-            &:not(.visible)
-                visibility hidden
             a
                 width panelOpen
                 display block
@@ -67,7 +65,7 @@ noselect()
             ul, .title
                 opacity 0
         &.disabled *
-            display none
+            visibility hidden
 
 @media (max-width: 1100px)
     .side-panel

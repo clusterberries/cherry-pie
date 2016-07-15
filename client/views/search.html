@@ -1,1 +1,61 @@
-<div>Search</div>
+<div class="search-panel">
+    <div class="tags-container">
+        <div class="tags-title" ng-click="triggerTags(tags.tags, 'tags')">
+            Теги
+            <div class="arrow-small"
+                ng-class="(!isShown || currentTags !== tags.tags) && 'hidden'"></div>
+        </div>
+        <div class="tags-title" ng-click="triggerTags(tags.ingredients, 'ingredients')">
+            Ингредиенты
+            <div class="arrow-small"
+                ng-class="(!isShown || currentTags !== tags.ingredients) && 'hidden'"></div>
+        </div>
+        <div class="tags-title" ng-click="triggerTags(tags.categories, 'categories')">
+            Категории
+            <div class="arrow-small"
+                ng-class="(!isShown || currentTags !== tags.categories) && 'hidden'"></div>
+        </div>
+        <ul class="tags-list" ng-class="!isShown && 'hidden'">
+            <li class="tag" ng-repeat="tag in currentTags" ng-click="selectTag(tag)">{{tag | lowercase}}</li>
+        </ul>
+    </div>
+    <div class="input">
+        <input type="search" ng-model="searchText">
+        <div class="img-search" ng-click="search()"></div>
+    </div>
+    <div class="tags-result">
+        <div class="tags-search" ng-if="tagsForSearch.tags.length">
+            Теги:
+            <ul class="tags-list">
+                <li class="tag" ng-repeat="tag in tagsForSearch.tags">{{tag}}</li>
+            </ul>
+        </div>
+        <div class="tags-search" ng-if="tagsForSearch.ingredients.length">
+            Ингредиенты:
+            <ul class="tags-list">
+                <li class="tag" ng-repeat="tag in tagsForSearch.ingredients">{{tag}}</li>
+            </ul>
+        </div>
+        <div class="tags-search"ng-if="tagsForSearch.categories.length">
+            Категории:
+            <ul class="tags-list">
+                <li class="tag" ng-repeat="tag in tagsForSearch.categories">{{tag}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sort">Сортировка по:
+        <select ng-model="sortType">
+            <option selected value="name">названию</option>
+            <option value="rating">рейтингу</option>
+            <option value="date">дате</option>
+        </select>
+    </div>
+</div>
+
+<div class="search-results recipes-view">
+    <ul class="categories-list">
+        <li class="preview-item" ng-repeat="item in resultItems">
+            <div class="item-wrapper"><recipe-preview item="item"></recipe-preview></div>
+        </li>
+    </ul>
+</div>
