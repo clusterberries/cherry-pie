@@ -25,31 +25,31 @@
             $stateProvider
             .state('recipes', {
                 url: ROUTES.RECIPES,
-                templateUrl: 'views/mainRecipesView.html',
+                templateUrl: 'components/category/mainRecipesView.html',
                 abstract: true,
                 controller: 'CategoryCtrl'
             })
             .state('recipes.category', {
                 url: ROUTES.CATEGORY,
-                templateUrl: 'views/category.html'
+                templateUrl: 'components/category/category.html'
             })
             .state('recipes.category.subcategory', {
                 url: ROUTES.SUBCATEGORY,
-                templateUrl: 'views/category.html' //TODO: delete subcategory.html if really don't need it
+                templateUrl: 'components/category/category.html'
             })
             .state('recipes.category.subcategory.recipe', {
                 url: ROUTES.RECIPE,
-                templateUrl: 'views/recipe.html',
+                templateUrl: 'components/recipe/recipe.html',
                 controller: 'RecipeCtrl'
             })
             .state('search', {
                 url: ROUTES.SEARCH,
-                templateUrl: 'views/search.html',
+                templateUrl: 'components/search/search.html',
                 controller: 'SearchCtrl'
             })
             .state('about', {
                 url: ROUTES.ABOUT,
-                templateUrl: 'views/about.html'
+                templateUrl: 'components/about/about.html'
             });
         }
     ]);

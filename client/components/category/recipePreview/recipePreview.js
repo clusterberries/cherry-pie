@@ -6,7 +6,7 @@
         function () {
             return {
                 restrict: 'E',
-                templateUrl: 'views/directives/recipePreview.html',
+                templateUrl: 'components/category/recipePreview/recipePreview.html',
                 replace: true,
                 scope: {
                     item: '='
@@ -28,6 +28,7 @@
                     };
 
                     /*** Initialization ***/
+                    // TODO: handle if there is no image, set default
                     imageElem.style.backgroundImage = 'url(' + scope.item.imgSmall + ')';
                     scope.isShown = false;
                 }
