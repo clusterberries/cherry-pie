@@ -1,6 +1,6 @@
 **/bower_components
 **/node_modules
 **/public
-**/JSXcomponents
+**/dist
 .idea/
 .vscode/

@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
 }));
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/dist'));
 
 // Temporary
 app.use(express.static(__dirname + '/bower_components'));

@@ -10,35 +10,32 @@
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="./HTML5-Reset/assets/css/reset.css">
-    <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/mainMenu.css">
-    <link rel="stylesheet" href="./styles/categories.css">
-    <link rel="stylesheet" href="./styles/navBar.css">
-    <link rel="stylesheet" href="./styles/recipe.css">
-    <link rel="stylesheet" href="./styles/recipePreview.css">
-    <link rel="stylesheet" href="./styles/search.css">
-    <link rel="stylesheet" href="./styles/about.css">
-    <link rel="stylesheet" href="./styles/stars.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/mainMenu.css">
+    <link rel="stylesheet" href="./css/categories.css">
+    <link rel="stylesheet" href="./css/navBar.css">
+    <link rel="stylesheet" href="./css/recipe.css">
+    <link rel="stylesheet" href="./css/recipePreview.css">
+    <link rel="stylesheet" href="./css/search.css">
+    <link rel="stylesheet" href="./css/about.css">
+    <link rel="stylesheet" href="./css/stars.css">
 </head>
 <body ng-controller="MainCtrl">
     <header ng-include="'components/mainMenu/mainMenu.html'"></header>
     <main ui-view></main>
 
-<!-- Temporary -->
     <script src="./angular/angular.js"></script>
     <script src="./angular-ui-router/release/angular-ui-router.js"></script>
     <script src="./angular-animate/angular-animate.js"></script>
 
     <script src="./app.js"></script>
-
     <script src="./common-js/DataLoaderSvc.js"></script>
-    <script src="./components/category/CategoriesSvc.js"></script>
-
     <script src="./MainCtrl.js"></script>
+
+    <script src="./components/category/CategoriesSvc.js"></script>
     <script src="./components/category/CategoryCtrl.js"></script>
     <script src="./components/recipe/RecipeCtrl.js"></script>
     <script src="./components/search/SearchCtrl.js"></script>
-
     <script src="./components/category/navBar/navBar.js"></script>
     <script src="./components/common/starts/stars.js"></script>
     <script src="./components/category/recipePreview/recipePreview.js"></script>
