@@ -63,6 +63,4 @@
             $rootScope.$stateParams = $stateParams;
         }
     ]);
-
-
 }());

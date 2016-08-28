@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./styles/recipePreview.css">
     <link rel="stylesheet" href="./styles/search.css">
     <link rel="stylesheet" href="./styles/about.css">
+    <link rel="stylesheet" href="./styles/stars.css">
 </head>
 <body ng-controller="MainCtrl">
     <header ng-include="'components/mainMenu/mainMenu.html'"></header>
@@ -27,25 +28,19 @@
     <script src="./angular/angular.js"></script>
     <script src="./angular-ui-router/release/angular-ui-router.js"></script>
     <script src="./angular-animate/angular-animate.js"></script>
-    <!-- <script src="./react/react.js"></script> -->
-    <!-- <script src="./react/react-dom.js"></script> -->
-    <!-- <script src="./babel/browser.js"></script> -->
 
     <script src="./app.js"></script>
 
-    <script src="./js/services/DataLoaderSvc.js"></script>
-    <script src="./js/services/CategoriesSvc.js"></script>
+    <script src="./common-js/DataLoaderSvc.js"></script>
+    <script src="./components/category/CategoriesSvc.js"></script>
 
     <script src="./MainCtrl.js"></script>
     <script src="./components/category/CategoryCtrl.js"></script>
     <script src="./components/recipe/RecipeCtrl.js"></script>
     <script src="./components/search/SearchCtrl.js"></script>
 
-    <!-- <script src="./js/components/mainMenu.js"></script>  -->
-    <!-- <script type="text/babel" src="./js/components/navBar.js"></script>     -->
-
-    <script src="./js/directives/navBar.js"></script>
-    <script src="./js/directives/stars.js"></script>
+    <script src="./components/category/navBar/navBar.js"></script>
+    <script src="./components/common/starts/stars.js"></script>
     <script src="./components/category/recipePreview/recipePreview.js"></script>
 </body>
 </html>

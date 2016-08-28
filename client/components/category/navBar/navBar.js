@@ -16,7 +16,7 @@
         function ($timeout, $window) {
             return {
                 restrict: 'AE',
-                templateUrl: 'views/directives/navBar.html',
+                templateUrl: 'components/category/navBar/navBar.html',
                 scope: {
                     categories: '=categoryPanel',
                     subcategories: '=subcategoryPanel',

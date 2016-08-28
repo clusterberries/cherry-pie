@@ -9,7 +9,7 @@
             var STARS_COUNT = 10;
             return {
                 restrict: 'E',
-                templateUrl: 'views/directives/stars.html',
+                templateUrl: 'components/common/starts/stars.html',
                 replace: true,
                 scope: {
                     rating: '='
