@@ -51,7 +51,7 @@
         "salads": [{
             "id": 6,
             "name": "Салат Цезарь",
-            "imgSmall": "img/6_small.jpg",
+            "imgSmall": "assets/6_small.jpg",
             "rating": 5,
             "tags": [ "сладкое", "холодное", "выпечка" ],
             "ingredients": [ "масло", "мука", "яйца", "маргарин", "соль", "молоко", "ванилин", "сахар" ]
@@ -59,14 +59,14 @@
         "maincourse": [{
             "id": 7,
             "name": "Лазанья",
-            "imgSmall": "img/7_small.jpg",
+            "imgSmall": "assets/7_small.jpg",
             "rating": 9,
             "tags": [ "сладкое", "холодное", "выпечка" ],
             "ingredients": [ "масло", "мука", "яйца", "маргарин", "соль", "молоко", "ванилин", "сахар" ]
         }, {
             "id": 8,
             "name": "Плов с курицей",
-            "imgSmall": "img/8_small.jpg",
+            "imgSmall": "assets/8_small.jpg",
             "rating": 7,
             "tags": [ "сладкое", "холодное", "выпечка" ],
             "ingredients": [ "масло", "мука", "ванилин", "сахар", "яйца", "какао", "сметана" ]
@@ -74,14 +74,14 @@
         "cakes": [{
             "id": 3,
             "name": "Наполеон",
-            "imgSmall": "img/3_small.jpg",
+            "imgSmall": "assets/3_small.jpg",
             "rating": 8,
             "tags": [ "сладкое", "холодное", "выпечка" ],
             "ingredients": [ "масло", "мука", "яйца", "маргарин", "соль", "молоко", "ванилин", "сахар" ]
         }, {
             "id": 1,
             "name": "Гравские развалины",
-            "imgSmall": "img/1_small.jpg",
+            "imgSmall": "assets/1_small.jpg",
             "rating": 9,
             "tags": [ "сладкое", "холодное", "выпечка" ],
             "ingredients": [ "масло", "мука", "ванилин", "сахар", "яйца", "какао", "сметана" ]
@@ -89,21 +89,21 @@
         "pies": [{
             "id": 5,
             "name": "Банановый пирог",
-            "imgSmall": "img/5_small.jpg",
+            "imgSmall": "assets/5_small.jpg",
             "rating": 8,
             "tags": [ "сладкое", "горячее", "выпечка" ],
             "ingredients": [ "масло", "мука", "яйца", "сгущёнка", "сахар" ]
         }, {
             "id": 2,
             "name": "Яблочная запеканка",
-            "imgSmall": "img/2_small.jpg",
+            "imgSmall": "assets/2_small.jpg",
             "rating": 9,
             "tags": [ "сладкое", "горячее", "выпечка" ],
             "ingredients": [ "масло", "мука", "яйца", "сгущёнка", "сахар" ]
         }, {
             "id": 4,
             "name": "Шоколадно-творожный пирог",
-            "imgSmall": "img/4_small.jpg",
+            "imgSmall": "assets/4_small.jpg",
             "rating": 7,
             "tags": [ "сладкое", "горячее", "выпечка" ],
             "ingredients": [ "масло", "мука", "яйца", "сгущёнка", "сахар" ]

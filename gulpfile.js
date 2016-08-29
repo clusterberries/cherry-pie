@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const stylus = require('gulp-stylus');
 const del = require('del');
 const rename = require("gulp-rename");
+const sourcemaps = require('gulp-sourcemaps');
 
 const path = {
     styles: './client/**/*.styl'
@@ -11,18 +12,22 @@ const path = {
 
 gulp.task('clean', () => del(['dist']));
 
-gulp.task('stylus', ['clean'], () => {
-    gulp.src(path.styles)
+gulp.task('stylus', () => {
+    return gulp.src(path.styles)
+        .pipe(sourcemaps.init())
         .pipe(rename(path => {
             path.dirname = '';
         }))
         .pipe(stylus())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('watch', ['stylus'], () => {
-  gulp.watch(path.styles, ['stylus']);
-  // Other watchers
+gulp.task('watch', () => {
+    gulp.watch(path.styles, gulp.series('stylus'));
+    // Other watchers
 });
 
-gulp.task('default', ['watch']);
+gulp.task('build:dev', gulp.series('clean', 'stylus'));
+
+gulp.task('default', gulp.series('clean', 'stylus', 'watch'));

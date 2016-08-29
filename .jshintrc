@@ -1,0 +1,11 @@
+{
+  "curly" : true,
+  "eqeqeq" : true,
+  "undef" : true,
+  "browser" : true,
+  "node" : true,
+  "globals" : {
+    "angular" : true
+  },
+  "indent" : 4
+}
