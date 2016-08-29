@@ -1,5 +1,5 @@
 {
-  "name": "cherrypie",
+  "name": "cherry-pie",
   "version": "0.0.1",
   "description": "Sandbox project for viewing and managing recipes.",
   "scripts": {
@@ -20,6 +20,7 @@
     "express": "^4.13.3"
   },
   "devDependencies": {
+    "browser-sync": "^2.14.0",
     "del": "^2.2.2",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-data": "^1.2.1",

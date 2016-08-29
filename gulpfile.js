@@ -5,6 +5,7 @@ const stylus = require('gulp-stylus');
 const del = require('del');
 const rename = require("gulp-rename");
 const sourcemaps = require('gulp-sourcemaps');
+const browserSync = require('browser-sync').create();
 
 const path = {
     styles: './client/**/*.styl'
@@ -28,6 +29,18 @@ gulp.task('watch', () => {
     // Other watchers
 });
 
-gulp.task('build:dev', gulp.series('clean', 'stylus'));
+gulp.task('serve', () => {
+    browserSync.init({
+        proxy: 'localhost:8000',
+        snippetOptions: {
+            ignorePaths: "components/**/*.html"
+        }
+    });
 
-gulp.task('default', gulp.series('clean', 'stylus', 'watch'));
+    browserSync.watch(['client/**/*.js','dist']).on('change', browserSync.reload);
+});
+
+gulp.task('build', gulp.series('stylus'));
+gulp.task('load', gulp.parallel('watch', 'serve'));
+
+gulp.task('default', gulp.series('clean', 'build', 'load'));

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-gulp build:dev
+gulp stylus
 
 node index.js &
-gulp watch &
+gulp load &
 wait
