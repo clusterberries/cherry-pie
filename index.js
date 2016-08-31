@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const reader = require('./server/reader.js');
 const bodyParser = require('body-parser');
+const debug = require('debug')('server');
 
 const isProd = process.argv[2] === 'prod';
 
@@ -40,9 +41,15 @@ if (isProd) {
     });
 }
 
+app.use(function(err, req, res, next) {
+    debug(`Server error: ${err.message}`);
+    res.writeHead(500, {'Content-Type': 'text/plain'});
+    res.end('Server error.\n');
+});
+
 app.get('/api/categories', reader.getCategories);
 app.get('/api/recipe/:id', reader.getRecipe);
 app.get('/api/tags', reader.getTags);
 
 app.listen(8000);
-console.log('Server is running on port 8000');
+debug('Server is running on port 8000');

@@ -2,6 +2,6 @@
 
 gulp stylus
 
-node index.js &
+DEBUG=server,server:reader supervisor -w index.js,server index &
 gulp load &
 wait

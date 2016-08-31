@@ -3,7 +3,7 @@
 const gulp = require('gulp');
 const stylus = require('gulp-stylus');
 const del = require('del');
-const rename = require("gulp-rename");
+const rename = require('gulp-rename');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
 
@@ -33,7 +33,7 @@ gulp.task('serve', () => {
     browserSync.init({
         proxy: 'localhost:8000',
         snippetOptions: {
-            ignorePaths: "components/**/*.html"
+            ignorePaths: 'components/**/*.html'
         }
     });
 
